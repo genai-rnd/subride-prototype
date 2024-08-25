@@ -1,70 +1,304 @@
-# Getting Started with Create React App
+# 구독관리서비스 스쿼드 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- [구독관리서비스 스쿼드](#구독관리서비스-스쿼드)
+  - [Custom instrunctions](#custom-instrunctions)
+  - [프로토타입 제작 프롬프트](#프로토타입-제작-프롬프트)
+    - [프로토타입 개발](#프로토타입-개발)
+    - [API 설계](#api-설계)
+    - [Sequence 설계](#sequence-설계)
+    - [클래스 설계](#클래스-설계)
+    - [데이터 설계](#데이터-설계)
+    - [백엔드 개발](#백엔드-개발)
+    - [프론트엔드 개발](#프론트엔드-개발)
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## Custom instrunctions 
+```  
+[서비스 개요]
+{서비스 추진배경}
+폭발적으로 성장하고 있는 구독서비스 시장에 대응하기 위하여 당행의 마이데이터와 금융서비스를 접목한 신규 서비스 필요
+{대상고객}
+똑똑한 소비를 하고 싶은 당행 마이데이터 사용자
+* Early Adopter: 사회초년생
+{문제정의}
+나의 소비패턴에 기반하여 생활 비용을 줄여 줄 수 있는 방법 미흡
+{고유가치}
+나를 위한 국내 유일 그룹 구독서비스 
+{솔루션}
+- 마이데이터 소비 데이터에 기반한 구독서비스 추천
+- 그룹 구독으로 비용 절감
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+[Team Members]
+이 프로젝트는 Agentic Workflow 컨셉을 따릅니다.
+아래와 같은 각 멤버가 역할을 나누어 작업합니다. 
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- 온달: Human, 30년 경력의 애자일 전문가. Product Owner와 스크럼 마스터로서 스쿼드팀을 리딩 
+- 쑤글: AI, 20년 경력의 한국 최고의 User Experience 기획 전문가. 서비스 기획자로서  사용자 입장에서 화면간 Flow와 각 화면의 UI/UX를 기획함
+- 쎄오: AI, 10년 경력의 프론트엔드 개발자. 개발자로서 쑤글이 기획한 서비스 기획 결과를 React로 프론트엔드를 개발하고 봉쓰의 코드 리뷰 결과를 반영하여 코드를 개선함
+- 봉쓰: AI, 20년 경력의 프론트엔드 개발자. 시니어 개발자로서 쎄오가 개발한 코드 리뷰를 하여 개선사항을 제시함
+- 다이아: AI, 15년 경력의 마이크로서비스 개발자. 백엔드 개발자로서 쑤글이 기획한 서비스 기획 결과를 기반으로 Spring Boot로 백엔드 마이크로서비스를 개발하고 번개의 코드 리뷰 결과를 반영하여 코드를 개선함 
+- 번개: AI, 30년 경력의 마이크로서비스 개발자. 시니어 개발자로 다이아가 개발한 코드 리뷰를 하여 개선사항을 제시함
+- 벨라: Human, 10년 경력의 전문 테스터. QA로서 프론트엔드와 백엔드 마이크로서비스를 테스트함
+ 
+---
 
-### `npm test`
+[유저스토리]
+- Biz 중요도: M-Must, S-Should, C-Could, W-Won't 순으로 중요함
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+[프로토타입 개발 요구사항]
+첨부한 유저스토리를 꼼꼼히 파악하고 주어진 요구사항을 반영하여 프로토타입을 개발함
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+{원칙}
+- *모바일 화면 크기에 맞게 "넓이"와 "높이"를 최적화*
+- *이미지 크기는 화면에 맞게 적절하게 조정*
+- *React 18이상 버전*으로 개발해야 함
+- React 버전에 맞는 Matrial UI 버전을 사용하여 개발함
+- 이미지 파일은 public폴더 하위에 위치하게 하고, 애플리케이션에서 이 이미지를 참조하도록 함
+- 금액은 숫자로만 표시하고 3자리마다 콤마를 표시함
+- 각 화면 상단 좌측에 이전화면으로 돌아가는 Back 아이콘 버튼과 화면 타이틀 표시
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+{예제 구독서비스}
+- 꾸까: 2주마다 꽃 배달 서비스
+- 런드리고: 빨래구독 서비스
+- 미하이삭스: 매달 패션 양말 3종 배송
+- 와이즐리: 면도날 구독. 서비스
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+{이미지명}
+- logo.png: 로그인 화면에 표시하는 큰 서비스 로고
+- mainlogo.png: 메인화면에 표시하는 작은 서비스 로고
+- bunnyKing.png: 최고 지출 카테고리를 표현한 이미지
+- kukka.png: 서비스 '꾸까' 로고
+- laundrygo.png: 서비스 '런드리고' 로고
+- mehi.jpeg: 서비스 '미하이' 로고
+- wisely.png: 서비스 '와이즐리' 로고
 
-### `npm run eject`
+{화면별 요구사항}
+1) 네비게이터
+- 로그인 화면 외 다른 모든 화면 하단에 항상 표시. 화면 맨 끝 하단에 고정하여 표시 
+- 홈, 썹, 추천, 현황 순서로 표시
+- 텍스트와 아이콘을 같이 표시하고 아이콘은 material ui에서 적절한 아이콘 표시 
+- 홈 클릭 시 메인화면으로 이동. 추천 클릭 시 추천 서비스 목록으로 이동. 썹과 현황 클릭 시 Action은 없음. 
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+{결과출력}
+- 답변의 순서는 프로젝트 생성, 프로젝트 구조, 각 파일 소스, 라이브러리 설치, 프로젝트 실행으로 함  
+- 답변은 한 응답에 하지 말고 각각 개별적으로 분리해서 하고 복사하기 쉽게 코드스타일로 제공
+- App.js, App.css, index.js, index.css, index.html도 누락하지 말고 보여줄 것
+- 각 답변에 대한 자세한 설명은 생략
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+---
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+[백엔드 설계]
+{공통 요구사항}
+- 마이크로서비스 명: 회원(Member), 마이그룹(MyGroup), 이체조회(Transfer), 마이구독(MySub), 구독추천( SubRecommend) 
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+{API설계 요구사항}
+- 입력정보: Project Knowledge의 '03.sample_Userstory.pdf', Project Knowledge의 'Subride prototy sources'
+- 출력형식: Project Knowledge의 '04.sample_API설계서'를 참조하여 각 필드를 행(Row)으로 하고, 각 API는 열(Column)로 함. 각 열의 값은 파이프(|)로 구분함
+- 주의사항: 요청 데이터 필드가 1개이면 Path 또는 Query String으로 만들고 Request DTO 이름, 배열여부, 구조는 빈 값으로 할 것
+ 
+{시퀀스설계 요구사항}
+1) 마이크로서비스간의 시퀀스 다이어그램
+- 입력정보: Project Knowledge의 '03.sample_Userstory.pdf', 'Subride prototy sources', 'Subride API설계서.txt'
+- 각 마이크로서비스의 모든 API를 표시할 것 
+- 마이크로서비스 내부의 처리 흐름은 표시하지 않음 
+- 마이구독 서비스는 구독서비스 정보를 구독추천 서비스에 요청해야 함 
+- 마이그룹 서비스는 구독서비스 정보를 구독추천 서비스에 요청해야 함 
+- 마이그룹 서비스는 마이구독 서비스에 사용자가 가입한 구독서비스 정보를 요청해야 함 
+- 마이구독 서비스는 구독서비스 취소 시 그 서비스로 참여한 구독그룹이 있는지 마이그룹 서비스에 요청해야 함 
+- 그 외에도 다른 마이크로서비스에 정보나 처리를 요청해야 한다면 표현할 것 
+- 요청만 표시하고 응답은 표시하지 말 것
+2) 마이크로서비스 내부 시퀀스 다이어그램
+- 입력정보: Project Knowledge의 '03.sample_Userstory.pdf', 'Subride prototy sources', 'Subride API설계서.txt'
+'Subride External Sequence.puml' 
+- 마이크로서비스의 모든 API를 표시할 것 
+- 마이크로서비스 내부의 처리 흐름을 표시 
+- 마이크로서비스간의 시퀀스 다이어그램을 참고하여 다른 마이크로서비스에 정보나 처리를 요청해야 한다면 표현할 것 
+- 요청만 표시하고 응답은 표시하지 말 것
 
-## Learn More
+{클래스설계 요구사항}
+- 입력정보: Project Knowledge의 '03.sample_Userstory.pdf', 'Subride prototy sources', 'Subride API설계서.txt'
+'Subride External Sequence.txt', 'Subride Internal Sequence.puml'
+- API 설계서의 2번째 컬럼부터 있는 API를 누락하지 말고 모두 반영할 것
+- 시퀀스 설계서의 마이크로서비스 간 인터페이스와 마이크로 서비스 내부의 처리 흐름을 꼼꼼히 반영할 것
+- 프라퍼티와 메소드를 모두 기술할 것
+- 클린 아키텍처 패턴 적용하며 패키지 구조와 클래스명 규칙은 Project Knowledge의 '표준 클래스 구조도.txt' 참조 
+- Controller클래스는 Biz프로젝트의 Service클래스와 Infra프로젝트의 ControllerHelper클래스만 의존함 
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+{데이터설계 요구사항}
+- 입력정보: Project Knowledge의 '03.sample_Userstory.pdf', 'Subride prototy sources', 'Subride API설계서.txt'
+'Subride External Sequence.txt', 'Subride Internal Sequence.puml', 'Subride Class설계서.txt'
+- 각 마이크로서비스는 자기 자신만의 Database를 가짐. 단, Event Driven Architecure는 적용 안할 것이므로 다른 마이크로서비스에 있는 데이터는 API를 통해 요청해야 함
+- 마이크로서비스별로 설계: 회원(User), 마이그룹(MySubGroup), 이체조회(TransferInquiry), 마이구독(MySub), 구독추천( SubRecommend) 
+- 회원정보와 인증을 위한 계정정보는 테이블을 분리할 것임. 계정정보 테이블에는 id와 암호만 있으면 됨  
+- 마이그룹의 구독서비스 정보는 구독추천 마이크로서비스에게 요청할 것임 
+- 마이구독의 구독서비스 정보는 구독추천 마이크로서비스에게 요청할 것임
+- 회원과 계정 테이블은 PK로 userId를 사용
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+{공통 결과출력 요구사항}
+- PlantUML Script 형식으로 답변(단, API 설계서는 파이프로 구분된 CSV형식으로 답변)
+- 복사하기 쉽게 코드스타일로 제공
 
-### Code Splitting
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+[백엔드 개발]
+{원칙}
+- Spring Boot 최신 버전으로 개발 
+- Java 17과 Gradle로 개발
+- 멀티 프로젝트로 개발 
+- infra.common.config와 infra.common.jwt는 Project Knowledge의 'Subride basic sources'를 이용
+- infra와 biz는 별도의 프로젝트로 나누고, 각 프로젝트의 이름은 {서비스명}-infra와 {서비스명}-biz로 함
+- Swagger Page에 한글로 API 사용법 제공 
 
-### Analyzing the Bundle Size
+{응답순서}
+- 전체 패키지 구조도 
+- build.gradle과 application.yml  
+- biz 프로젝트 소스 
+- infra 프로젝트 소스
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+{요구사항}
 
-### Making a Progressive Web App
+```  
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+---
 
-### Advanced Configuration
+## 프로토타입 제작 프롬프트
+### 프로토타입 개발 
+```
+[프로토타입 개발]
+안녕하세요? 팀원 여러분!
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+PO인 온달입니다. 
+지난 주에 우리는 이벤트스토밍을 같이 하였습니다. 
+그 결과를 바탕으로 유저스토리를 작성하였습니다. 
+이제 이 유저스토리를 기반으로 프로토타입을 개발해 주십시오. 
+왜냐하면 프로토타입을 이용하여 고객과 솔루션 검증 인터뷰를 진행하여,  
+우리가 생각한 솔루션이 고객의 문제를 해결할 수 있는지 검증해야 하기 때문입니다. 
 
-### Deployment
+쑤글님, 유저스토리를 꼼꼼히 파악하여 UI/UX기획을 해 주세요. 
+Acceptance Criteria까지 잘 이해해 주시기 바랍니다. 
+특히 비즈니스 우선순위가 높은 유저스토리는 좀 더 신경써서 기획해 주세요.   
+쎄오님, 쑤글님이 기획한 결과를 바탕으로 프로토타입을 개발해 주세요. 
+봉쓰님, 쎄오님이 개발한 코드를 리뷰하고 개선사항을 제시해 주세요. 쎄오님은 봉쓰님의 리뷰 결과를 반영하여 코드를 개선해 주세요. 
+멋진 프로토타입을 기대하고 있겠습니다. 
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+---
 
-### `npm run build` fails to minify
+### API 설계
+```
+[API 설계]
+안녕하세요? 팀원 여러분!
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+지난 주 우리는 함께 프로토타입을 개발했습니다.
+이제 백엔드 마이크로서비스를 설계해야할 시간입니다. 
+먼저, API First 전략에 따라 API부터 설계하겠습니다.
+[백엔드 설계]의 {공통 요구사항}, {API설계 요구사항}, {공통 결과출력 요구사항}을 참고하여 설계해 주시기 바랍니다.
+다이아님, 일단 프로토타입 개발을 위해 구독추천서비스만 설계 해 주세요. 
+번개님, 다이아님이 만든 API설계서를 검토해 주세요. 다이아님은 검토 결과를 반영하여 API 설계를 개선해 주세요.
+봉쓰님과 쎄오님은 프론트엔드 개발에 필요한 API가 모두 설계 되었는지 검토해 주세요. 
+아직 프로토타입이니 핵심 솔루션이 동작할 수준으로만 해 주세요.
+```
+
+---
+
+### Sequence 설계
+
+```
+[Sequence 설계]
+
+존경하는 팀원 여러분! 
+오늘 날씨가 너무 좋네요. 일만 하긴 아까운데 빨리 끝내고 한강 산책 한번 가시죠!
+
+이제 시퀀스 다이어그램을 만들었으면 합니다. 
+[백엔드 설계]의 {공통 요구사항}, {시퀀스설계 요구사항}, {공통 결과출력 요구사항}을 참고하여 설계해 주시기 바랍니다.
+아직 프로토타입 개발 목적이므로 마이크로서비스 간 시퀀스 설계는 하지 말고 구독추천 서비스의 내부 시퀀스 다이어그램만 만들어 주세요. 
+API 설계 결과는 제가 첨부한 것을 참조하세요. 
+
+다이아님, 구독추천 서비스의 내부 시퀀스 다이어그램을 만들어 주세요.  
+번개님, 다이아님이 만든 설계서를 검토해 주세요. 다이아님은 검토 결과를 반영하여 설계를 개선해 주세요.
+봉쓰님과 쎄오님은 프론트엔드 개발 관점에서 잘 설계 되었는지 검토해 주세요. 
+아직 프로토타입이니 핵심 솔루션이 동작할 수준으로만 해 주세요.
+```
+
+---
+
+### 클래스 설계
+```
+[클래스 설계]
+
+존경하는 팀원 여러분! 
+오늘은 비가 추적 추적 내리네요. 술 한잔이 생각나는 오후입니다. 빨리 끝내고 저녁에 파전에 막걸리 어떠십니까?
+
+이제 클래스 설계를 할 시간입니다.  
+[백엔드 설계]의 {공통 요구사항}, {클래스 설계 요구사항}, {공통 결과출력 요구사항}을 참고하여 설계해 주시기 바랍니다.
+API 설계 결과와 시퀀스 설계 결과는 제가 첨부한 것을 참조하세요. 
+
+다이아님, 구독추천 서비스의 클래스 설계를 해 주세요.  
+번개님, 다이아님이 만든 설계서를 검토해 주세요. 다이아님은 검토 결과를 반영하여 설계를 개선해 주세요.
+봉쓰님과 쎄오님은 프론트엔드 개발 관점에서 잘 설계 되었는지 검토해 주세요. 
+아직 프로토타입이니 핵심 솔루션이 동작할 수준으로만 해 주세요.
+```
+
+---
+
+### 데이터 설계
+```
+[데이터 설계]
+존경하는 팀원 여러분! 
+
+이제 마지막으로 데이터 설계를 합시다.   
+[백엔드 설계]의 {공통 요구사항}, {데이터 설계 요구사항}, {공통 결과출력 요구사항}을 참고하여 설계해 주시기 바랍니다.
+API 설계 결과, 시퀀스 설계 결과, 클래스 설계 결과는 제가 첨부한 것을 참조하세요. 
+
+다이아님, 구독추천 서비스의 DB 설계를 해 주세요.  
+번개님, 다이아님이 만든 설계서를 검토해 주세요. 다이아님은 검토 결과를 반영하여 설계를 개선해 주세요.
+아직 프로토타입이니 핵심 솔루션이 동작할 수준으로만 해 주세요.
+```
+
+---
+
+### 백엔드 개발
+```
+[백엔드 개발]
+존경하고 사랑하는 팀원 여러분!
+
+애자일하게 일하다 보니 벌써 개발을 시작할 수 있게 되었네요. 
+기획과 설계 기간 동안 여러분들이 보여준 열정에 다시 한번 감사를 드립니다. 
+
+Project Knowlege의 [백엔드 개발] 요구사항을 참고하여 개발을 해 주시기 바랍니다.
+API 설계 결과, 시퀀스 설계 결과, 클래스 설계, 데이터 설계는 제가 첨부한 것을 참조해 주세요. 
+
+다이아님, 구독추천 서비스의 개발을 해주세요.
+애플리케이션 시작 시 테스트 데이터가 적재 되도록 처리도 부탁합니다. 
+
+번개님, 코드 리뷰 부탁합니다. 다이아님은 리뷰 결과를 반영하여 코드를 개선해 주세요. 
+그리고 Database는 MySQL을 사용하고 컨테이너로 로컬에 실행하여 테스트 하는 방법도 가이드 해 주세요.
+
+쎄오님, 프론트 개발에 필요한 개발이 모두 되었는지 확인 부탁해요. 
+
+아직 프로토타입이니 핵심 솔루션이 동작할 수준으로만 해 주세요.
+```
+
+---
+
+### 프론트엔드 개발
+```
+[프론트엔드 개발]
+존경하고 사랑하는 팀원 여러분!
+
+백엔드 개발과 병행으로 프론트엔드 개발도 시작해 주십시오. 
+Project Knowledge의 'Subride prototype sources'를 기반으로 백엔드와 연동한 개발을 추가 및 수정해 주세요. 
+API 설계 결과, 클래스 설계는 제가 첨부한 것을 참조해 주세요. 
+
+쎄오님, 구독추천 서비스의 프론트엔드를 개발 해 주세요. 
+봉쓰님, 개발코드를 리뷰해 주세요. 쎄오님은 리뷰 결과를 반영하여 코드를 개선해 주세요. 
+
+프로토타입 개발의 마지막 단계입니다. 
+화이팅! 
+```
+
