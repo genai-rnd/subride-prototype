@@ -17,10 +17,10 @@ Persona, Context, Task, Format, Example, Tone.
 --- 
 
 ## 프롬프트 엔지니어링 기술 Best5
-- Zero Shot vs. Few Shot
+- Zero Shot vs. Few Shot  
   Zero Shot은 맥략없이 키워드를 던지는 것이고, Few Shot은 예시를 주고 키워드를 던지는 것. 
 
-- Chains of Thoughts: 추론 시키기
+- Chains of Thoughts: 추론 시키기  
   예시에 유도하고 싶은 사고방식을 추가하여 유사한 방식으로 추론하도록 유도함
   
   ```  
@@ -31,13 +31,13 @@ Persona, Context, Task, Format, Example, Tone.
   Q: 최고의 "유럽"어행 스케쥴을 한 문단으로 만들어줘 
   ```  
 
-- Zero Shot CoT(Chain Of Thoughts)
+- Zero Shot CoT(Chain Of Thoughts)  
   "let's think step by step"을 추가하면 됨
 
-- Role playing: 역활 나누기
+- Role playing: 역활 나누기  
   AI의 역할과 나의 배경 설명을 제공. 
 
-- 사람에게 물어보듯 하기
+- 사람에게 물어보듯 하기  
   - 이름 불러주기: 너는 {전문성/역할}의 {이름} 
   - 중요사항 반복적으로 "강조"하기: 너는 최고의 {전문성/역할}이야   
   - 반드시 "가장 좋은 답"을 내라고 말하기: 세상에서 가장 좋은 {Task}를 만들어줘   
@@ -54,8 +54,8 @@ Persona, Context, Task, Format, Example, Tone.
 ---
 
 ## GPTs 활용
-- GPTs란? 특정분야에 맞게 커스터마이징된 GPT
-- 추천 GPTs
+- GPTs란? 특정분야에 맞게 커스터마이징된 GPT  
+- 추천 GPTs  
   - GPTs : 최적의 GPTs 찾아주기   
   - MJ Prompt Generator: 이미지 생성 AI인 미드저니의 프롬프트 생성 보조.  
   - 커리어해커 프롬프트 생성기: 
